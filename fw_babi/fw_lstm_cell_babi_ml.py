@@ -303,9 +303,6 @@ class FWQA_DeepBiLSTM(object):
             sq_emb = tf.nn.embedding_lookup(self.LUT, stories_wq)
             input_seq = tf.reduce_sum(sq_emb * self._encoding, axis=2)
 
-        import ipdb
-        ipdb.set_trace()
-
         with tf.variable_scope("fast_weights_rnn", reuse=True) as scope:
             outputs, states = tf.nn.bidirectional_dynamic_rnn(self.fw_cells, self.bw_cells,
                                     input_seq, sequence_length=sq_lens, 

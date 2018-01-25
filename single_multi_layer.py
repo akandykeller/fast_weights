@@ -128,6 +128,7 @@ with tf.Session() as sess:
             a = trainA[start:end]
             summary, cost_t = model.batch_fit(sq, sq_lens, a, lr, etas, decay_lambdas, FLAGS.keep_prob)
             total_cost += cost_t
+            print(cost_t)
 
         if t % FLAGS.evaluation_interval == 0:
             train_preds = []

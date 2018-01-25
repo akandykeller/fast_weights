@@ -23,7 +23,7 @@ tf.flags.DEFINE_float("eta_l3", None, "Fast weights learning rate for third laye
 tf.flags.DEFINE_float("decay_lambda_l3", None, "Decay for previous timesteps in fast weights for third layer.")
 tf.flags.DEFINE_float("anneal_rate", 25, "Number of epochs between halving the learnign rate.")
 tf.flags.DEFINE_float("anneal_stop_epoch", 200, "Epoch number to end annealed lr schedule.")
-tf.flags.DEFINE_float("max_grad_norm", 10.0, "Clip gradients to this norm.")
+tf.flags.DEFINE_float("max_grad_norm", 2.0, "Clip gradients to this norm.")
 tf.flags.DEFINE_boolean("max_pooling", True, "Max pool across time steps.")
 tf.flags.DEFINE_boolean("layer_norm", True, "Layer norm C and IFOG.")
 tf.flags.DEFINE_float("forget_bias", 1.0, "Initial bias for forget gate.")
@@ -33,7 +33,7 @@ tf.flags.DEFINE_integer("epochs", 200, "Number of epochs to train for.")
 tf.flags.DEFINE_integer("embedding_size", 20, "Embedding size for embedding matrices.")
 tf.flags.DEFINE_integer("num_hidden_units", 64, "Number of hidden units for RNN.")
 tf.flags.DEFINE_integer("num_layers", 1, "Number of layers for RNN.")
-tf.flags.DEFINE_float("keep_prob", 0.5, "Dropout keep probabilitiy.")
+tf.flags.DEFINE_float("keep_prob", 1.0, "Dropout keep probabilitiy.")
 tf.flags.DEFINE_integer("memory_size", 70, "Maximum size of memory (all stories are padded to this).")
 tf.flags.DEFINE_boolean("tied_output", False, "Tie output weights to input weights")
 tf.flags.DEFINE_boolean("prepend_q", False, "Append question before story sentences in addition to after.")
@@ -130,6 +130,7 @@ with tf.Session() as sess:
             sq_lens = trainSQ_lens[start:end]
             a = trainA[start:end]
             summary, cost_t = model.batch_fit(sq, sq_lens, a, lr, etas, decay_lambdas, FLAGS.keep_prob)
+            print(cost_t)
             total_cost += cost_t
 
         if t % FLAGS.evaluation_interval == 0:
