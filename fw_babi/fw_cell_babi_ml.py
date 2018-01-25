@@ -13,7 +13,7 @@ from __future__ import division
 import tensorflow as tf
 import numpy as np
 from six.moves import range
-from . import FastWeightsRNNCell
+from . import FastWeightsRNNCell_Experimental as FastWeightsRNNCell
 
 def position_encoding(sentence_size, embedding_size):
     """
@@ -233,6 +233,12 @@ class FWQA_DeepBiRNN(object):
                                     # shape=[self._num_hidden_units],
                                     initializer=tf.zeros([self._num_hidden_units]),
                                     dtype=tf.float32)
+
+                        self.W_conv = tf.get_variable(initializer=tf.random_uniform(
+                            [1, self._num_hidden_units, self._num_hidden_units, 1],
+                            -np.sqrt(2.0/self._num_hidden_units),
+                            np.sqrt(2.0/self._num_hidden_units)),
+                            dtype=tf.float32, name="W_conv")
 
                         # hidden weights (See Hinton's video @ 21:20)
                         self.W_h = tf.get_variable(name="W_h",

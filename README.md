@@ -1,12 +1,10 @@
-# Fast-Weights Q&A for bAbI Tasks
+# Fast-Weights for NLP
 
 Implementations of [Using Fast Weights to Attend to the Recent Past](https://arxiv.org/abs/1610.06258) and [Gated Fast-Weights for On-The-Fly Neural Program Generation](http://metalearning.ml/papers/metalearn17_schlag.pdf) for Question & Answering over the 20 bAbI Q&A tasks. Implementations are in tensorflow and reuse existing framework of [End2End Memory Networks](https://github.com/akandykeller/memn2n) for [bAbI](http://arxiv.org/abs/1502.05698) dataset processing.
 
 The novelty of this work lies in the application of fast-weights to NLP tasks as a replacement for Memory Network type architectures. It shows that associative memories as enabled by fast-weights are competitive with the explicit memory structures of End-to-End Memory Networks. Additionally, this work expands upon previous implementations by incorporating the fast-weights into multi-layered and bi-directional RNN models. Furthermore, I believe this to be the first publicly available implementation of the Gated Fast-Weights model.
-
 #### Fast-Weights RNN
 ![Fast-Weights picture](http://i.imgur.com/DCznSf4.png)
-
 #### Gated Fast-Weights
 ![Gated-Fast Weights](https://i.imgur.com/7i4Y59u.png)
 
